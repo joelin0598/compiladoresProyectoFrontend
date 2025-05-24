@@ -15,22 +15,22 @@ const SST: React.FC = () => {
     resetearEstado();
 
     try {
-      const response = await axios.post(
-        'http://localhost:8080/api/compilar',
-        code,
-        {
-          headers: {
-            'Content-Type': 'text/plain',
-          },
-        }
-      );
-
-      manejarRespuesta(response.data);
-    } catch (error) {
-      setErrorGeneral('Error al conectar con el backend.');
-    } finally {
-      setLoading(false);
+  const response = await axios.post(
+    'https://compiladoresproyectobackend-1.onrender.com/api/compilar',
+    code,
+    {
+      headers: {
+        'Content-Type': 'text/plain',
+      },
     }
+  );
+
+  manejarRespuesta(response.data);
+} catch (error) {
+  setErrorGeneral('Error al conectar con el backend.');
+} finally {
+  setLoading(false);
+}
   };
 
   const analizarArchivo = async () => {
@@ -43,22 +43,22 @@ const SST: React.FC = () => {
     formData.append('archivo', file);
 
     try {
-      const response = await axios.post(
-        'http://localhost:8080/api/compilar/archivo',
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        }
-      );
-
-      manejarRespuesta(response.data);
-    } catch (error) {
-      setErrorGeneral('Error al subir el archivo.');
-    } finally {
-      setLoading(false);
+  const response = await axios.post(
+    'https://compiladoresproyectobackend-1.onrender.com/api/compilar/archivo',
+    formData,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
     }
+  );
+
+  manejarRespuesta(response.data);
+} catch (error) {
+  setErrorGeneral('Error al conectar con el backend.');
+} finally {
+  setLoading(false);
+}
   };
 
   const manejarRespuesta = (data: any) => {
